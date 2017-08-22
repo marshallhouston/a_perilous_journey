@@ -18,7 +18,12 @@ class LinkedList
     else count = 1
       @head.next_node = Node.new(surname)
     end
+  end
 
+  def prepend(surname)
+    detached_nodes = @head
+    @head = Node.new(surname)
+    @head.next_node = detached_nodes
   end
 
   def to_string

@@ -109,4 +109,28 @@ class TestLinkedList < MiniTest::Test
 
     assert_equal "The Chaplin family, followed by the Joyce family.", list.to_string
   end
+
+  def test_prepend_adds_to_beginning_and_still_maintains_other_nodes
+    list = LinkedList.new
+
+    list.append("Saban")
+    list.append("Pruitt")
+    list.prepend("Bryant")
+
+    assert_equal "Bryant", list.head.surname
+  end
+
+  def test_prepend_stays_head_with_nodes_appended_after
+    list = LinkedList.new
+
+    list.append("Saban")
+    list.append("Pruitt")
+    list.prepend("Bryant")
+    list.append("Stallings")
+    list.append("Lupoi")
+
+    assert_equal "Bryant", list.head.surname
+  end
+
+
 end
