@@ -199,4 +199,25 @@ class TestLinkedList < MiniTest::Test
     assert_equal "The Lacy family, followed by the Henry family, followed by the Richardson family, followed by the Ingram family", list.to_string
   end
 
+  def test_find_a_family_in_the_list
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
+    list.append("Richardson")
+
+    assert_equal "The Richardson family", list.find(2, 1)
+  end
+
+  def test_find_more_than_one_family
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
+    list.append("Richardson")
+    list.append("Ingram")
+
+    assert_equal "The Henry family, followed by the Richardson family, followed by the Ingram family", list.find(1, 3)
+  end
+
 end

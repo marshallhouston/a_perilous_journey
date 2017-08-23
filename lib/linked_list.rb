@@ -2,14 +2,13 @@ require 'pry'
 require './lib/node'
 
 class LinkedList
-  attr_accessor :head, :next_node, :count, :current_node  #:family_surnames
+  attr_accessor :head, :next_node, :count, :current_node
 
   def initialize
     @head = nil
     @next_node
     @current_node = @head
     @count = 0
-    # @family_surnames = [""]
   end
 
   def append(surname)
@@ -44,6 +43,36 @@ class LinkedList
     detached_nodes = current_node.next_node
     current_node.next_node = inserted_node
     inserted_node.next_node = detached_nodes
+  end
+
+  def find(position, number_of_families)
+    # move to the correct position in the list
+    current_node = @head
+
+    position.times do
+      current_node = current_node.next_node
+    end
+    # collect number of family names equal to the amount passed in
+    collected_family_names = Array.new
+
+    number_of_families.times do
+      collected_family_names << current_node.surname
+      current_node = current_node.next_node
+    end
+    if collected_family_names.count == 1
+      name_only = collected_family_names.map do |name|
+        "The #{name} family"
+      end
+      name_only[0] #returning the first position of the array. so bad, so bad.
+    else
+      first_name_only = collected_family_names[0]
+      all_other_names = collected_family_names.drop(1)
+      other_names_in_strings = all_other_names.map do |name|
+        ", followed by the #{name} family"
+      end
+      "The #{first_name_only} family#{other_names_in_strings.join}"
+    end
+    # to_string(collected_family_names)
   end
 
   def find_total_number_of_nodes
