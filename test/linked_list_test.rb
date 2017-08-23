@@ -220,4 +220,25 @@ class TestLinkedList < MiniTest::Test
     assert_equal "The Henry family, followed by the Richardson family, followed by the Ingram family", list.find(1, 3)
   end
 
+  def test_pop_removes_a_family
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henderson")
+
+    assert_equal "The Henderson family has died of dysentery",list.pop
+  end
+
+  def test_to_string_returns_correct_names_after_pop
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
+    list.append("Richardson")
+    list.append("Ingram")
+    list.pop
+    list.pop
+
+    assert_equal "The Lacy family, followed by the Henry family", list.to_string
+  end
 end

@@ -112,4 +112,24 @@ class LinkedList
     end
   end
 
+  def pop
+    #goes through the list and finds the last node current_node.next_node == nil
+    #saves this node for deletion
+    current_node = @head
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+    end
+    node_to_pop = current_node
+
+    #reassign the previous nodes next_node to nil... that way it gets "lost"
+    current_node = @head
+    until current_node.next_node == node_to_pop
+      current_node = current_node.next_node
+    end
+    node_to_reassign_next_value = current_node
+    node_to_reassign_next_value.next_node = nil
+
+    "The #{node_to_pop.surname} family has died of dysentery"
+    end
+
 end
