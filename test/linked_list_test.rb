@@ -158,9 +158,9 @@ class TestLinkedList < MiniTest::Test
 
     list.append("Brooks")
     list.append("Henderson")
+    list.insert(1, "Lawson")
 
-    assert_instance_of Node, list.insert(1, "Lawson")
-    assert_equal "Lawson", list.head.next_node.surname
+    assert_equal ["Brooks", "Lawson", "Henderson"],  list.family_surnames_in_order
   end
 
   def test_insert_into_a_different_position
@@ -168,23 +168,35 @@ class TestLinkedList < MiniTest::Test
 
     list.append("Lacy")
     list.append("Henry")
+    list.append("Ingram")
+    list.insert(2, "Yeldon")
+
+    assert_equal ["Lacy", "Henry", "Yeldon", "Ingram"], list.family_surnames_in_order
+    assert_equal 4, list.find_total_number_of_nodes
+    assert_equal 4, list.count
+  end
+
+  def test_family_names_stay_in_order_after_prepend
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
+    list.append("Richardson")
+    list.append("Ingram")
+    list.prepend("Upchurch")
+
+    assert_equal ["Upchurch", "Lacy", "Henry", "Richardson", "Ingram"], list.family_surnames_in_order
+  end
+
+  def test_tells_which_families_are_in_the_list
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
     list.append("Richardson")
     list.append("Ingram")
 
-    assert_instance_of Node, list.insert(3, "Yeldon")
-    assert_equal 5, list.find_total_number_of_nodes
-    assert_equal 5, list.count
+    assert_equal "The Lacy family, followed by the Henry family, followed by the Richardson family, followed by the Ingram family", list.to_string
   end
-
-  # def test_family_name_order_outputs_name_only
-  #   list = LinkedList.new
-  #
-  #   list.append("Lacy")
-  #   list.append("Henry")
-  #   list.append("Richardson")
-  #   list.append("Ingram")
-  #
-  #   assert_equal ["Henry", "Richardson", "Ingram"], list.family_name_order
-  # end
 
 end

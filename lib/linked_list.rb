@@ -2,13 +2,14 @@ require 'pry'
 require './lib/node'
 
 class LinkedList
-  attr_accessor :head, :next_node, :count, :current_node
+  attr_accessor :head, :next_node, :count, :current_node  #:family_surnames
 
   def initialize
     @head = nil
     @next_node
     @current_node = @head
     @count = 0
+    # @family_surnames = [""]
   end
 
   def append(surname)
@@ -36,9 +37,9 @@ class LinkedList
   def insert(node_index, surname)
     @count += 1
     inserted_node = Node.new(surname)
-    @current_node = @head
+    current_node = @head
     (node_index - 1).times do
-      current_node = @current_node.next_node
+      current_node = current_node.next_node
     end
     detached_nodes = current_node.next_node
     current_node.next_node = inserted_node
@@ -58,21 +59,27 @@ class LinkedList
     number_of_nodes
   end
 
-  # def family_name_order
-  #   current_node = @head
-  #   family_names = Array.new
-  #   while curent_node != nil
-  #     family_names << current_node.next_node.surname
-  #   end
-  #   family_names
-  # end
+  def family_surnames_in_order
+    current_node = @head
+    family_surnames = Array.new
+    while current_node != nil
+      family_surnames << current_node.surname
+      current_node = current_node.next_node
+    end
+    family_surnames
+  end
 
   def to_string
+    num_of_names = family_surnames_in_order.count
+    families_in_a_string = family_surnames_in_order[1, (num_of_names - 1)].map do |surname|
+      ", followed by the #{surname} family"
+    end.join
+
     current_node = @head
     if current_node.next_node == nil
       "The #{@head.surname} family"
     else
-      "The #{@head.surname} family, followed by the #{@head.next_node.surname} family."
+      "The #{@head.surname} family#{families_in_a_string}"
     end
   end
 
