@@ -220,4 +220,19 @@ class TestLinkedList < MiniTest::Test
     assert_equal "The Henry family, followed by the Richardson family, followed by the Ingram family", list.find(1, 3)
   end
 
+  def test_includes_a_name_on_the_list
+    list = LinkedList.new
+
+    list.append("Lacy")
+
+    assert list.includes?("Lacy")
+  end
+
+  def test_includes_refutes_a_value_that_isnt_in_the_list
+    list = LinkedList.new
+
+    list.append("Lacy")
+
+    refute list.includes?("Goode")
+  end
 end
