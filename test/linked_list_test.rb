@@ -68,7 +68,6 @@ class TestLinkedList < MiniTest::Test
     list = LinkedList.new
 
     list.append("Longmuirs")
-    list.append("Childs")
 
     assert_instance_of Node, list.append("Childs")
   end
@@ -132,5 +131,60 @@ class TestLinkedList < MiniTest::Test
     assert_equal "Bryant", list.head.surname
   end
 
+  def test_count_is_five_after_appends_and_prepend
+    list = LinkedList.new
+
+    list.append("Saban")
+    list.append("Pruitt")
+    list.prepend("Bryant")
+    list.append("Stallings")
+    list.append("Lupoi")
+
+    assert_equal 5, list.count
+  end
+
+  # def test_if_the_next_node_is_nil
+  #   list = LinkedList.new
+  #
+  #   list.append("Greg")
+  #
+  #   refute_nil list.head
+  #   assert_nil list.head.next_node
+  #
+  # end
+
+  def test_insert_into_position_after_head
+    list = LinkedList.new
+
+    list.append("Brooks")
+    list.append("Henderson")
+
+    assert_instance_of Node, list.insert(1, "Lawson")
+    assert_equal "Lawson", list.head.next_node.surname
+  end
+
+  def test_insert_into_a_different_position
+    list = LinkedList.new
+
+    list.append("Lacy")
+    list.append("Henry")
+    list.append("Richardson")
+    list.append("Ingram")
+
+    assert_instance_of Node, list.insert(3, "Yeldon")
+    assert_equal 5, list.find_total_number_of_nodes
+    assert_equal 5, list.count
+  end
+
+  # def test_family_name_order_outputs_name_only
+  #   list = LinkedList.new
+  #
+  #   list.append("Lacy")
+  #   list.append("Henry")
+  #   list.append("Richardson")
+  #   list.append("Ingram")
+  #
+  #   assert_equal ["Henry", "Richardson", "Ingram"], list.family_name_order
+  # end
 
 end
