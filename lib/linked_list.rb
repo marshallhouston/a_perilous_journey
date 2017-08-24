@@ -46,24 +46,24 @@ class LinkedList
   end
 
   def find(position, number_of_families)
-    # move to the correct position in the list
     current_node = @head
 
     position.times do
       current_node = current_node.next_node
     end
-    # collect number of family names equal to the amount passed in
+
     collected_family_names = Array.new
 
     number_of_families.times do
       collected_family_names << current_node.surname
       current_node = current_node.next_node
     end
+
     if collected_family_names.count == 1
       name_only = collected_family_names.map do |name|
         "The #{name} family"
       end
-      name_only[0] #returning the first position of the array. so bad, so bad.
+      name_only[0]
     else
       first_name_only = collected_family_names[0]
       all_other_names = collected_family_names.drop(1)
@@ -72,7 +72,6 @@ class LinkedList
       end
       "The #{first_name_only} family#{other_names_in_strings.join}"
     end
-    # to_string(collected_family_names)
   end
 
   def find_total_number_of_nodes
@@ -127,15 +126,12 @@ class LinkedList
   end
 
   def pop
-    #goes through the list and finds the last node current_node.next_node == nil
-    #saves this node for deletion
     current_node = @head
     while current_node.next_node != nil
       current_node = current_node.next_node
     end
     node_to_pop = current_node
 
-    #reassign the previous nodes next_node to nil... that way it gets "lost"
     current_node = @head
     until current_node.next_node == node_to_pop
       current_node = current_node.next_node

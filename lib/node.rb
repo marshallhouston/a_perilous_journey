@@ -1,7 +1,7 @@
 require 'pry'
 
 class Node
-attr_accessor :surname, :next_node, :position, :supplies
+attr_accessor :surname, :next_node, :supplies
 
   def initialize(surname, supplies)
     @surname = surname

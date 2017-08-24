@@ -86,6 +86,4 @@ class WagonTrainTest < Minitest::Test
     assert_equal 3, wt.supplies["spare wagon tongues"]
   end
 
-
-
 end
