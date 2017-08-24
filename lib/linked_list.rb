@@ -11,31 +11,31 @@ class LinkedList
     @count = 0
   end
 
-  def append(surname)
+  def append(surname, supplies)
     @count += 1
     if @head == nil
-      @head = Node.new(surname)
+      @head = Node.new(surname, supplies)
     elsif count == 1
-      @head.next_node = Node.new(surname)
+      @head.next_node = Node.new(surname, supplies)
     else
       current_node = @head
       while current_node.next_node != nil
         current_node = current_node.next_node
       end
-      current_node.next_node = Node.new(surname)
+      current_node.next_node = Node.new(surname, supplies)
     end
   end
 
-  def prepend(surname)
+  def prepend(surname, supplies)
     @count += 1
     detached_nodes = @head
-    @head = Node.new(surname)
+    @head = Node.new(surname, supplies)
     @head.next_node = detached_nodes
   end
 
-  def insert(node_index, surname)
+  def insert(node_index, surname, supplies)
     @count += 1
-    inserted_node = Node.new(surname)
+    inserted_node = Node.new(surname, supplies)
     current_node = @head
     (node_index - 1).times do
       current_node = current_node.next_node
