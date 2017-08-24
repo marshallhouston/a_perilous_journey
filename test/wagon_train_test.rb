@@ -86,8 +86,6 @@ class WagonTrainTest < Minitest::Test
     assert_equal 3, wt.supplies["spare wagon tongues"]
   end
 
-  # FUTURE ASSERTIONS
-  #assert_equal 500, wt.supplies["pounds of food"]
-  #assert_equal 3, wt.supplies["spare wagon tongues"]
+
 
 end

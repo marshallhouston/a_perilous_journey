@@ -35,7 +35,6 @@ class WagonTrain
         end
     end
     supplies_hash
-
   end
 
 end
