@@ -1,12 +1,18 @@
 require './lib/linked_list'
 
 class WagonTrain
+  attr_accessor :list
 
-  def list
-    list = LinkedList.new
+  def initialize
+    @list = LinkedList.new
   end
 
   def append(surname)
-    node = Node.new(surname)
+    list.append(surname)
   end
+
+  def count
+    list.count
+  end
+
 end

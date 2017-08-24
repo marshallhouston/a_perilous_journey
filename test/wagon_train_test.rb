@@ -28,4 +28,21 @@ class WagonTrainTest < Minitest::Test
 
     assert_equal "Burke", wt.list.head.surname
   end
+
+  def test_wagon_train_appends_and_returns_another_correct_name
+    wt = WagonTrain.new
+
+    wt.append("West")
+
+    assert_equal "West", wt.list.head.surname
+  end
+
+  def test_wagon_train_can_count_the_number_of_nodes
+    wt = WagonTrain.new
+
+    wt.append("Burke")
+    wt.append("West")
+
+    assert_equal 2, wt.count
+  end
 end
