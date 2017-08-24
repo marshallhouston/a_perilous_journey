@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/linked_list'
 require 'pry'
 
-class TestLinkedList < MiniTest::Test
+class TestLinkedList < Minitest::Test
   def test_linked_list_exists
     list = LinkedList.new
 
